@@ -19,13 +19,28 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 const registerWithEmailAndPassword = async (email, password) => {
+  // eslint-disable-next-line no-useless-catch
   try {
-    const respond = createUserWithEmailAndPassword(auth, email, password);
-    const user = (await respond).user;
-    console.log(user);
+    const response = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    const user = response.user;
+    return user;
   } catch (err) {
-    console.log(err);
+    throw err;
   }
 };
 
-export { registerWithEmailAndPassword };
+const signInWithEmailAndPassword = async (email, password) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const response = await signInWithEmailAndPassword(auth, email, password);
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export { registerWithEmailAndPassword, signInWithEmailAndPassword };

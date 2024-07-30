@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { registerWithEmailAndPassword } from "../firebase";
 
@@ -29,9 +29,9 @@ export default function Register() {
   return (
     <>
       <div>
-        <h1>Register Page</h1>
         <form className="register-form" action="#">
           <div>
+            <h1 className="mt-4 mb-4">Register Page</h1>
             <label
               className="block text-sm font-medium leading-6 text-gray-900"
               htmlFor="email"
@@ -74,6 +74,13 @@ export default function Register() {
           >
             Register
           </button>
+
+          <p className="my-2">
+            Already Have an Account?{" "}
+            <NavLink to="/login" className="underline">
+              Login
+            </NavLink>
+          </p>
         </form>
       </div>
     </>
