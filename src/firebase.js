@@ -3,8 +3,10 @@ import { initializeApp } from "firebase/app";
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  GoogleAuthProvider,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
+  signInWithPopup,
 } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -22,6 +24,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
 
 const registerWithEmailAndPassword = async (email, password) => {
   // eslint-disable-next-line no-useless-catch
@@ -57,8 +60,20 @@ const passwordReset = async (email) => {
   }
 };
 
+const googleLogin = async () => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const response = await signInWithPopup(auth, googleProvider);
+    const user = response.user;
+    return user;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export {
   auth,
+  googleLogin,
   loginWithEmailAndPassword,
   passwordReset,
   registerWithEmailAndPassword,

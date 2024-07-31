@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { loginWithEmailAndPassword } from "../firebase";
+import { googleLogin, loginWithEmailAndPassword } from "../firebase";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -22,6 +22,15 @@ export default function Login() {
         pauseOnHover: true,
         theme: "light",
       });
+      navigate("/home");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    try {
+      await googleLogin();
       navigate("/home");
     } catch (error) {
       console.log(error);
@@ -75,6 +84,12 @@ export default function Login() {
             onClick={handleLogin}
           >
             Login
+          </button>
+          <button
+            className="mt-2 ml-2 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            onClick={handleGoogleLogin}
+          >
+            Login with Google
           </button>
 
           <p className="my-2">
