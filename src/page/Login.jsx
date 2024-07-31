@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { signInWithEmailAndPassword } from "../firebase";
+import { loginWithEmailAndPassword } from "../firebase";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -12,7 +12,7 @@ export default function Login() {
     event.preventDefault();
 
     try {
-      const response = await signInWithEmailAndPassword(email, password);
+      const response = await loginWithEmailAndPassword(email, password);
       console.log(response);
       toast.success("Login Successfull...!", {
         position: "bottom-right",
@@ -27,6 +27,7 @@ export default function Login() {
       console.log(error);
     }
   };
+
   return (
     <>
       <div>
@@ -80,6 +81,12 @@ export default function Login() {
             No Account?{" "}
             <NavLink to="/register" className="underline">
               Register
+            </NavLink>
+          </p>
+          <p className="my-2">
+            Forgot Passowrd?{" "}
+            <NavLink to="/reset" className="underline">
+              Recover Password
             </NavLink>
           </p>
         </form>
