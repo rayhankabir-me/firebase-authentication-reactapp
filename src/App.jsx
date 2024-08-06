@@ -5,6 +5,7 @@ import Home from "./page/Home";
 import Login from "./page/Login";
 import Register from "./page/Register";
 import Reset from "./page/Reset";
+import UploadFile from "./page/UploadFile";
 import PrivateRoutes from "./routes/PrivateRoutes";
 
 function App() {
@@ -15,11 +16,12 @@ function App() {
           <Routes>
             <Route element={<PrivateRoutes />}>
               <Route path="/home" element={<Home />} />
-              <Route path="/home" element={<Home />} exact />
+              <Route path="/" element={<Home />} exact />
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/reset" element={<Reset />} />
+            <Route path="/upload-file" element={<UploadFile />} />
           </Routes>
         </div>
       </Router>

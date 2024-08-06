@@ -1,5 +1,5 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
+import { getApp, initializeApp } from "firebase/app";
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -8,6 +8,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
 } from "firebase/auth";
+import { getStorage } from "firebase/storage";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -25,6 +26,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
+
+//clodu storage
+const firebaseApp = getApp();
+const storage = getStorage(firebaseApp);
 
 const registerWithEmailAndPassword = async (email, password) => {
   // eslint-disable-next-line no-useless-catch
@@ -72,9 +77,11 @@ const googleLogin = async () => {
 };
 
 export {
+  app,
   auth,
   googleLogin,
   loginWithEmailAndPassword,
   passwordReset,
   registerWithEmailAndPassword,
+  storage,
 };
