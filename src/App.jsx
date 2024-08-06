@@ -3,6 +3,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Home from "./page/Home";
 import Login from "./page/Login";
+import MultipleFilesUpload from "./page/MultipleFilesUpload";
 import Register from "./page/Register";
 import Reset from "./page/Reset";
 import UploadFile from "./page/UploadFile";
@@ -22,6 +23,10 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/reset" element={<Reset />} />
             <Route path="/upload-file" element={<UploadFile />} />
+            <Route
+              path="/multiple-files-upload"
+              element={<MultipleFilesUpload />}
+            />
           </Routes>
         </div>
       </Router>
